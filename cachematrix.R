@@ -26,18 +26,16 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## The function cacheSolve() take an inversible matrix 'x'and first check if the inverse of that matrix is 
 ## in the cache. If yes it returns the message "Getting cached data" and the inverse in the cache otherwise   
-## it calculate the inverse of the matrix 'x' using thefunction solve and return the inverse calculated.
+## it computes the inverse of the matrix 'x' using the function solve and return the inverse calculated.
 
 cacheSolve <- function(x, ...) {
           
-          m <- x$getinverse()
+          m <- x$getinverse()       ## The inverse of matrix in the cache is assign to m
   
-          if (!is.null(m)){
-    
-                  message("Getting cached data")
-                  return (m)
-           }
-  
+          if (!is.null(m)){         ## Conditional expression checking if the cache return is not empty
+                                    
+                  message("Getting cached data")   ## Print the massage if the cache is not empty
+                  return (m)                      ## Return the content of the cache if cache not empty 
           data <- x$getmatrix()      ## Assign the matrix 'x' to the variable data
           m <- solve(data, ...)      ## calaculate the inverse of data and assign the result to m
           x$setinverse(m)            ## Set m as the inverse of the matrix 'x'
